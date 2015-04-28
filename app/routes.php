@@ -26,3 +26,9 @@ Route::get('create_user', function(){
 
     return 'Done';
 });
+
+Route::get('/', array('uses' => 'MainController@index'));
+
+Route::post('member/login', array('as' => 'login_post', 'uses' => 'AuthController@postLogin'));
+
+Route::get('member/register', array('as' => 'register_get', 'uses' => 'AuthController@getRegister'));

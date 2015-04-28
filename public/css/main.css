@@ -1,0 +1,21 @@
+.container .row{
+    margin-top: 35px;
+}
+
+.navbar-inverse{
+    background-color: #428bca;
+    border-color: #428bca;
+}
+
+.navbar-inverse .navbar-brand{
+    color: #fff;
+}
+
+.user-info{
+    margin-top: 7px;
+}
+.nav-right.sign-in-top{
+    float:right;
+    margin-left: 10px;
+    margin-top: 7px;
+}
