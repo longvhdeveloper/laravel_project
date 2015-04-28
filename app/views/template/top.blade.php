@@ -40,7 +40,7 @@
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Profile</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logout</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{URL::route('logout_get')}}">Logout</a></li>
                 </ul>
             </div>
             @endif

@@ -8,11 +8,12 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="../../favicon.ico">
-        <title>Jumbotron Template for Bootstrap</title>
+        <title>{{$title}}</title>
         <!-- Bootstrap core CSS -->
         <link href="{{asset('public/css/bootstrap.css')}}" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="{{asset('public/css/jumbotron.css')}}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{asset('public/css/login.css')}}">
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
         <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
         <script src="{{asset('public/js/ie-emulation-modes-warning.js')}}"></script>
@@ -24,7 +25,9 @@
     </head>
     <body>
 
-
+        <div class="container">
+        @yield('content')
+        </div>
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
