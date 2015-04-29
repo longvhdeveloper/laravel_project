@@ -70,4 +70,32 @@ class AuthController extends BaseController
             return Redirect::route('register_get')->withInput(Input::except('password', 'repassword'));
         }
     }
+
+    public function getChangePassword()
+    {
+        return View::make('auth.change_password', array(
+            'title' => 'Sua mat khau'
+        ));
+    }
+
+    public function postChangePassword()
+    {
+        $valid = Validator::make(Input::get(), User::$changePasswordRules, User::$messages);
+
+        if ($valid->passes()) {
+            try {
+                $user = Sentry::findUserByCredentials(array(
+                    'password'   => Input::get('oldpassword'),
+                    'username' => Sentry::getUser()->username,
+                ));
+                $user->password = Input::get('newpassword');
+                $user->save();
+                return Redirect::route('changepass_get')->with('success', 'Thay doi mat khau thanh cong');
+            } catch (Cartalyst\Sentry\Users\WrongPasswordException $e) {
+                return Redirect::route('changepass_get')->with('error', 'Mat khau cu khong hop le');
+            }
+        } else {
+            return Redirect::route('changepass_get')->with('error', $valid->errors()->first());
+        }
+    }
 }

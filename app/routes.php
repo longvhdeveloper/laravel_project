@@ -36,3 +36,7 @@ Route::get('member/register', array('as' => 'register_get', 'before' => 'is_logi
 Route::get('member/logout', array('as' => 'logout_get', 'before' => 'check_user', 'uses' => 'AuthController@getLogout'));
 
 Route::post('member/register', array('as' => 'register_post', 'before' => 'csrf|is_login', 'uses' => 'AuthController@postRegister'));
+
+Route::get('member/changepassword', array('as' => 'changepass_get', 'before' => 'check_user', 'uses' => 'AuthController@getChangePassword'));
+
+Route::post('member/changepassword', array('as' => 'changepass_post', 'before' => 'check_user|csrf', 'uses' => 'AuthController@postChangePassword'));
