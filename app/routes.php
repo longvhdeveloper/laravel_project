@@ -29,8 +29,10 @@ Route::get('create_user', function(){
 
 Route::get('/', array('as' => 'index', 'uses' => 'MainController@index'));
 
-Route::any('member/login', array('as' => 'login_post', 'uses' => 'AuthController@postLogin'));
+Route::any('member/login', array('as' => 'login_post', 'before' => 'is_login', 'uses' => 'AuthController@postLogin'));
 
-Route::get('member/register', array('as' => 'register_get', 'uses' => 'AuthController@getRegister'));
+Route::get('member/register', array('as' => 'register_get', 'before' => 'is_login' ,'uses' => 'AuthController@getRegister'));
 
-Route::get('member/logout', array('as' => 'logout_get', 'uses' => 'AuthController@getLogout'));
+Route::get('member/logout', array('as' => 'logout_get', 'before' => 'check_user', 'uses' => 'AuthController@getLogout'));
+
+Route::post('member/register', array('as' => 'register_post', 'before' => 'csrf|is_login', 'uses' => 'AuthController@postRegister'));

@@ -122,6 +122,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Cartalyst\Sentry\SentryServiceProvider',
+		'Greggilbert\Recaptcha\RecaptchaServiceProvider',
 
 	),
 
@@ -190,7 +191,7 @@ return array(
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
 		'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
-
+		'Recaptcha' => 'Greggilbert\Recaptcha\Facades\Recaptcha',
 	),
 
 );

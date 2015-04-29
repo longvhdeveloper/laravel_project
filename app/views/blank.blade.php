@@ -13,6 +13,7 @@
         <link href="{{asset('public/css/bootstrap.css')}}" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="{{asset('public/css/jumbotron.css')}}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{asset('public/css/main.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('public/css/login.css')}}">
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
         <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -24,7 +25,11 @@
         <![endif]-->
     </head>
     <body>
-
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Laravel Project</a>
+            </div>
+        </nav>
         <div class="container">
         @yield('content')
         </div>

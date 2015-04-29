@@ -88,3 +88,25 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+Route::filter('check_user', function($route, $request){
+    if (!Sentry::check()) {
+        return Redirect::route('index')->with('error', 'Ban phai dang nhap de thuc hien thao tac nay');
+    }
+});
+
+Route::filter('is_login', function($route, $request){
+    if (Sentry::check()) {
+        return Redirect::route('index')->with('error', 'Ban da dang nhap vao he thong');
+    }
+});
+
+Route::filter('check_access', function($route, $request, $role){
+    if (Sentry::check()) {
+        if (!Sentry::getUser()->hasAccess($role)) {
+            return Redirect::route('index')->with('error', 'Ban khong co quyen truy cap vao chuc nang nay');
+        }
+    } else {
+        return Redirect::route('index')->with('error', 'Ban phai dang nhap de thuc hien thao tac nay');
+    }
+});
