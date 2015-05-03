@@ -98,4 +98,69 @@ class AuthController extends BaseController
             return Redirect::route('changepass_get')->with('error', $valid->errors()->first());
         }
     }
+
+    public function getForgot()
+    {
+        return View::make('auth.forgot', array(
+            'title' => 'Lay lai mat khau'
+        ));
+    }
+
+    public function postForgot()
+    {
+        $valid = Validator::make(Input::all(), User::$forgotPasswordRules, User::$messages);
+        if ($valid->passes()) {
+            try {
+                $user = Sentry::findUserByLogin(Input::get('username'));
+
+                // Get the password reset code
+                $resetCode = $user->getResetPasswordCode();
+
+                //send email for user
+                Mail::send('emails.auth.activecode', array(
+                    'user' => $user->username,
+                    'code' => $resetCode,
+                    'name' => $user->first_name . ' ' . $user->last_name,
+                    'email' => $user->email,
+                ), function($message) use ($user){
+                    $message->from('longtestsmpt@gmail.com', 'No-reply email');
+                    $message->to($user->email, $user->first_name . ' ' . $user->last_name);
+                    $message->subject('Yeu cau lay lai email');
+                });
+                return Redirect::route('forgot_get')->with('success', 'Mot email chua lien ket xac nhan da gui toi email cua ban, vui long kiem tra va hoan tat yeu cau.');
+            } catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
+                return Redirect::route('forgot_get')->with('error', 'Username khong ton tai trong he thong');
+            }
+        } else {
+            return Redirect::route('forgot_get')->with('error', $valid->errors()->first());
+        }
+
+    }
+
+    public function getActiveReset($user, $code)
+    {
+        try {
+            $user = Sentry::findUserByLogin($user);
+            if ($user->checkResetPasswordCode($code)) {
+                $newPassword = Str::random(6);
+                $user->attemptResetPassword($code, $newPassword);
+                $dataEmail = array(
+                    'user' => $user->username,
+                    'name' => $user->first_name .' ' . $user->last_name,
+                    'email' => $user->email,
+                    'pass' => $newPassword,
+                );
+                Mail::send('emails.auth.resetpass', $dataEmail, function($message) use ($dataEmail){
+                        $message->from('longtestsmpt@gmail.com', 'No-reply email');
+                        $message->to($dataEmail['email']);
+                        $message->subject('Mat khau moi cua ban tren faq');
+                });
+                return Redirect::route('index')->with('success', 'Mat khau moi da duoc goi den email cua ban');
+            } else {
+                return Redirect::route('forgot_get')->with('error', 'Khong the lay lai mat khau. Vui long thu lai thao tac nay ben duoi');
+            }
+        } catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
+            return Redirect::route('forgot_get')->with('error', 'Username khong ton tai trong he thong');
+        }
+    }
 }

@@ -43,4 +43,9 @@ class User extends Cartalyst\Sentry\Users\Eloquent\User {
         'newpassword' => 'required|min:5',
         'renewpassword' => 'required|same:newpassword',
     );
+
+    public static $forgotPasswordRules = array(
+        'username' => 'required',
+        'recaptcha-response_field' => 'required|recaptcha',
+    );
 }

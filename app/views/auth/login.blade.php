@@ -17,7 +17,9 @@
             </br>
             <div class="wrapper">
             <span class="group-btn">
-                <button type="submit" class="btn btn-primary btn-md">login <i class="fa fa-sign-in"></i></button>
+                <button type="submit" class="btn btn-primary btn-md">login <i class="fa fa-sign-in"></i></button><br/>
+                <div style="margin-top:5px;margin-bottom:5px;">Or</div>
+                <a href="{{URL::route('forgot_get')}}">Forgot password</a>
             </span>
             </div>
             </div>

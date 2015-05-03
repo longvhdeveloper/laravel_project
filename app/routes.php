@@ -40,3 +40,19 @@ Route::post('member/register', array('as' => 'register_post', 'before' => 'csrf|
 Route::get('member/changepassword', array('as' => 'changepass_get', 'before' => 'check_user', 'uses' => 'AuthController@getChangePassword'));
 
 Route::post('member/changepassword', array('as' => 'changepass_post', 'before' => 'check_user|csrf', 'uses' => 'AuthController@postChangePassword'));
+
+Route::get('member/forgot', array('as' => 'forgot_get', 'before' => 'is_login', 'uses' => 'AuthController@getForgot'));
+
+Route::post('member/forgot', array('as' => 'forgot_post', 'before' => 'is_login|csrf', 'uses' => 'AuthController@postForgot'));
+
+Route::get('member/active/{user}/{code}', array('as' => 'active_reset', 'before' => 'is_login', 'uses' => 'AuthController@getActiveReset'));
+
+Route::get('create_cate', function(){
+    Category::create(array(
+        'title' => 'PHP nang cao'
+    ));
+    Category::create(array(
+        'title' => 'Laravel Framework'
+    ));
+    return 'Done';
+});
