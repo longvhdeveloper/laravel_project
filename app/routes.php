@@ -56,3 +56,15 @@ Route::get('create_cate', function(){
     ));
     return 'Done';
 });
+
+Route::get('question/create', array(
+    'as' => 'question_create_get',
+    'before' => 'check_user',
+    'uses' => 'QuestionController@getCreate'
+));
+
+Route::post('question/create', array(
+    'as' => 'question_create_post',
+    'before' => 'csrf|check_user',
+    'uses' => 'QuestionController@postCreate'
+));

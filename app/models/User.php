@@ -48,4 +48,9 @@ class User extends Cartalyst\Sentry\Users\Eloquent\User {
         'username' => 'required',
         'recaptcha-response_field' => 'required|recaptcha',
     );
+
+    public function questions()
+    {
+        return $this->hasMany('Question', 'user_id');
+    }
 }
