@@ -1,7 +1,7 @@
 <?php
 class Question extends Eloquent
 {
-    protected $fillable = array('title', 'conent', 'view', 'vote');
+    protected $fillable = array('title', 'content', 'view', 'vote', 'category_id', 'user_id');
     protected $table = 'questions';
 
     public static $createRules = array(

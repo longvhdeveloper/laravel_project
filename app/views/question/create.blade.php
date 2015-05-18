@@ -5,7 +5,7 @@
     <div id="legend">
         <legend>{{$title}}</legend>
     </div>
-    <div class="col-md-8 register">        
+    <div class="col-md-8 register">
         <div class="control-group">
             {{Form::label('category', 'Category', array('class' => 'control-label'))}}
             <div class="controls">
@@ -15,7 +15,7 @@
         <div class="control-group">
             {{Form::label('title', 'Title', array('class' => 'control-label'))}}
             <div class="controls">
-                {{Form::text('firstname', Input::old('title'), array('class' => 'form-control'))}}
+                {{Form::text('title', Input::old('title'), array('class' => 'form-control'))}}
             </div>
         </div>
         <div class="control-group">
