@@ -68,3 +68,22 @@ Route::post('question/create', array(
     'before' => 'csrf|check_user',
     'uses' => 'QuestionController@postCreate'
 ));
+
+Route::get('question/tag/{tag}', array('as' => 'question_tags_get', 'uses' => 'QuestionController@getQuestionByTag'));
+
+Route::get('question/vote/{action}/{id}', array(
+    'as' => 'question_vote_get',
+    'before' => 'check_user',
+    'uses' => 'QuestionController@getVote'
+))->where(array(
+    'action' => '(like|dislike)',
+    'id' => '[0-9]+'
+));
+
+Route::get('question/detail/{id}/{title}', array(
+    'as' => 'question_detail_get',
+    'uses' => 'QuestionController@getDetail'
+))->where(array(
+    'id' => '[0-9]+',
+    'title' => '[a-zA-Z0-9.\-]+'
+));

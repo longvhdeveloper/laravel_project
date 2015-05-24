@@ -29,3 +29,54 @@
     margin-bottom: 20px;
     margin-left: 15px;
 }
+
+/*List question*/
+.question{
+    margin-bottom: 10px;
+    line-height: 1.8em;
+}
+.info{
+    margin-left: -25px;
+    border: 1px solid #eee;
+    padding: 20px 5px;
+    font-weight: bold;
+    text-align: center;
+    width: 10.666667%;
+    background-color: #E4EDF5;
+    height: 100px;
+}
+.answer_info{
+    margin-left: 10px;
+}
+.vote_down{
+    margin-top: 55px;
+}
+.number{
+    font-size: 24px;
+}
+.text{
+    font-size: 14px;
+}
+.question-title{
+    font-size:20px;
+    font-weight: bold;
+}
+.time-sent{
+    color: #767474;
+    line-height: 1.8em;
+    margin-top: 5px;
+}
+.tags{
+    line-height: 1.8em;
+    margin-top: 5px;
+}
+.tag{
+    float:left;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    background-color: #eee;
+}
+h1{
+    font-size: 22px;
+}

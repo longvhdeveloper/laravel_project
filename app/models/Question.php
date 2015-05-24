@@ -30,4 +30,11 @@ class Question extends Eloquent
     {
         return $this->belongsToMany('Tag', 'question_tag')->withTimestamps();
     }
+
+    public function getTimeAgoAttribute()
+    {
+        $date = \Carbon\Carbon::createFromTimestamp(strtotime($this->created_at))->diffForHumans();
+
+        return $date;
+    }
 }

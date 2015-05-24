@@ -55,4 +55,21 @@ class QuestionController extends BaseController
             return Redirect::route('question_create_get')->with('error', $valid->errors()->first());
         }
     }
+
+    public function getVote($action, $id)
+    {
+        if (Request::ajax()) {
+            $question = Question::find($id);
+            if ($action == 'like') {
+                $vote = $question->vote + 1;
+            } elseif ($action == 'dislike') {
+                $vote = $question->vote - 1;
+            }
+            $question->vote = $vote;
+            $question->save();
+            return $vote;
+        } else {
+            return Redirect::route('index');
+        }
+    }
 }

@@ -51,5 +51,6 @@
         <script src="{{asset('public/js/bootstrap.js')}}"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="{{asset('public/js/ie10-viewport-bug-workaround.js')}}"></script>
+        @yield('data_code')
     </body>
 </html>
